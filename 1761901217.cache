@@ -1,0 +1,33 @@
+[
+  {
+    "type": "exp.binop",
+    "op": "=",
+    "lexp": {
+      "type": "exp.var",
+      "token": "a"
+    },
+    "rexp": {
+      "type": "exp.const",
+      "value": {
+        "type": "type.number",
+        "value": 10
+      }
+    }
+  },
+  {
+    "type": "exp.invoke",
+    "func": {
+      "type": "exp.var",
+      "token": "print"
+    },
+    "args": [
+      {
+        "type": "exp.const",
+        "value": {
+          "type": "type.number",
+          "value": 10
+        }
+      }
+    ]
+  }
+]

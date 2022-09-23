@@ -1,11 +1,12 @@
 // This *really short and readable code* breaks DiceScript code into tokens which will be much easier to evaluate
 
+const constants = require('./constants.js');
 
 // regrets
 const digitReg = /[0-9]/
 const letterReg = /[a-zA-Z]/
 const specialsReg = /[\[\]\(\)\{\},.;]/
-const operandsReg =/[\=\+\-\*\<\>]/
+const operandsReg =/[\=\+\-\*\<\>!|/#@$^]/
 const whitesReg = /[\ \t\n]/
 
 module.exports.regs = {
@@ -19,13 +20,13 @@ module.exports.regs = {
 // Tokenizer is DFA-like
 
 // valid states
-const WHITES    = 0
-const DIGITS    = 1
-const WORDS     = 2
-const OPERAND   = 3
-const FLOAT     = 4
-const SPECIAL   = 5
-const STRING    = 6
+const WHITES    = constants.tokenConst.whites;
+const DIGITS    = constants.tokenConst.number;
+const WORDS     = constants.tokenConst.word;
+const OPERAND   = constants.tokenConst.operand;
+const FLOAT     = constants.tokenConst.float;
+const SPECIAL   = constants.tokenConst.special;
+const STRING    = constants.tokenConst.string;
 
 module.exports.states = {
     WHITES: WHITES,

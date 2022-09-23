@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DiceScript</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> 
+<style>
+
+:root {
+    font-family: 'Ubuntu Mono', monospace;
+
+    --bg: rgb(40, 45, 54);
+    --hl: rgb(44, 49, 58);
+
+    --green: rgb(151, 196, 117);
+    --cyan: rgb(81, 182, 195);
+    --blue: rgb(93, 174, 242);
+    --purple: rgb(199, 177, 223);
+    --red: rgb(226, 107, 115);
+    --orange: rgb(210,155,98);
+    --yellow: rgb(224, 193, 118);
+    
+    --white: rgb(187, 187, 187);
+}
+
+body {
+    background-color: black;
+}
+
+.editor {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+
+    font-size: 2em;
+    color: var(--white);
+
+    /*background-color: var(--bg);*/
+    font-family: 'Ubuntu Mono', monospace;
+    z-index: -200;
+}
+
+.editor-bg {
+    position: absolute;
+    background-color: var(--bg);
+}
+
+.dc-input {
+    font-family: inherit;
+    
+    background-color: rgba(0,0,0,0);
+    
+    border: none;
+    font-size: inherit;
+    color: rgba(0,0,0,0);
+
+    width: 100%;
+    margin: 0;
+}
+
+.dc-input:focus {
+    border: none;
+    color: var(--white);
+    background-color: var(--hl);
+    outline: none;
+}
+
+.underline {
+    white-space: pre;
+    position:absolute;
+    color: var(--green);
+    z-index: -100;
+    background-color: var(--bg);
+    width: inherit;
+    line-height: 1.3em;
+}
+
+
+</style>
+</head>
+
+<body>
+<div class="editor">
+    <div class="underline" id="u0">any</div>
+    <input type="textarea " class="-input" id="i0" style="height: 200px;"><br>
+
+    <div class="underline" id="u1">any</div>
+    <input type="text" class="dc-input" id="i1"><br>
+
+    <div class="underline" id="u2">any</div>
+    <input type="text" class="dc-input" id="i2"><br>
+
+    <div class="underline" id="u3">any</div>
+    <input type="text" class="dc-input" id="i3"><br>
+
+    <div class="underline" id="u4">any</div>
+    <input type="text" class="dc-input" id="i4"><br>
+
+    <div class="underline" id="u5">any</div>
+    <input type="text" class="dc-input" id="i5"><br>
+
+    <div class="underline" id="u6">any</div>
+    <input type="text" class="dc-input" id="i6"><br>
+
+    <div class="underline" id="u7">any</div>
+    <input type="text" class="dc-input" id="i7"><br>
+
+</div>
+
+<script>
+
+    $ = (id) => { return document.getElementById(id); }
+    ctx = {}
+
+    window.addEventListener('load', function() {
+        
+        ctx.underlines = []
+        ctx.inputs = []
+
+        for(i = 0; i < 8; i++) {
+            
+            ctx.underlines.push($('u'+i))
+            ctx.inputs.push($('i'+i))
+
+            ctx.underlines[i].innerHTML = ctx.inputs[i].value + ' '
+        }
+
+
+        for(i = 0; i < 8; i++) {
+
+
+            nfunc = (function(i) {return function() {
+
+                ctx.underlines[i].innerHTML = ctx.inputs[i].value + ' '
+
+            }})(i)
+
+            ctx.inputs[i].addEventListener('blur', nfunc);
+
+            moveUp = (function(i) {return function(e) {
+                
+                console.log(i+' '+e.keyCode)
+                
+                if(e.keyCode === 38) { // up
+                    if(i == 0) return;
+
+                    ctx.inputs[i-1].focus();
+                }
+
+                if(e.keyCode === 40  || e.keyCode) { // down
+                    if(i == 7) return;
+
+                    ctx.inputs[i+1].focus();
+                }
+
+                /*if (e.keyCode == 37) {
+      
+                    if( $("#tomorrow").is(':focus') ){ // if tomorrow element is focused only
+                        
+                        $("#tomorrow").prop('checked', false); // uncheck tomorrow
+                        $("#today").prop('checked', true).focus(); // check tomorrow        
+                    }
+                }
+                // for right arrow
+                if (e.keyCode == 39) {
+                
+                    if( $("#today").is(':focus') ){ // if today element is focused only
+                        
+                        $("#today").prop('checked', false); // uncheck today
+                        $("#tomorrow").prop('checked', true).focus(); // check tomorrow
+                    }
+                }*/
+
+            }})(i)
+
+            ctx.inputs[i].addEventListener('keydown', moveUp);
+
+            /*ctx.inputs[i].addEventListener('blur', function() {
+                console.log(i)
+                ctx.underlines[i].innerHTML = ctx.inputs[i].value
+            });*/
+        }
+
+    }) 
+
+
+
+</script>
+
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+
+a<br>
+a<br>
+a<br>
+a<br>
+</body>
+
+
+</html>

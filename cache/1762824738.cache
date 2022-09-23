@@ -1,0 +1,989 @@
+{
+  "type": "exp.block",
+  "code": [
+    {
+      "type": "exp.binop",
+      "op": "=",
+      "lexp": {
+        "type": "exp.var",
+        "token": "filter"
+      },
+      "rexp": {
+        "type": "exp.const",
+        "value": {
+          "type": "type.function",
+          "args": [
+            "arr",
+            "pred"
+          ],
+          "code": {
+            "type": "exp.block",
+            "code": [
+              {
+                "type": "exp.binop",
+                "op": "=",
+                "lexp": {
+                  "type": "exp.var",
+                  "token": "narr"
+                },
+                "rexp": {
+                  "type": "exp.const",
+                  "value": {
+                    "type": "type.array",
+                    "value": []
+                  }
+                }
+              },
+              {
+                "type": "exp.for",
+                "init": {
+                  "type": "exp.binop",
+                  "op": "=",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.const",
+                    "value": {
+                      "type": "type.number",
+                      "value": 0
+                    }
+                  }
+                },
+                "pred": {
+                  "type": "exp.binop",
+                  "op": "<",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.unop",
+                    "op": "#",
+                    "exp": {
+                      "type": "exp.var",
+                      "token": "arr"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "exp.binop",
+                  "op": "=",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.binop",
+                    "op": "+",
+                    "lexp": {
+                      "type": "exp.var",
+                      "token": "i"
+                    },
+                    "rexp": {
+                      "type": "exp.const",
+                      "value": {
+                        "type": "type.number",
+                        "value": 1
+                      }
+                    }
+                  }
+                },
+                "code": {
+                  "type": "exp.block",
+                  "code": [
+                    {
+                      "type": "exp.if",
+                      "pred": {
+                        "type": "exp.invoke",
+                        "func": {
+                          "type": "exp.var",
+                          "token": "pred"
+                        },
+                        "args": [
+                          {
+                            "type": "exp.array",
+                            "array": {
+                              "type": "exp.var",
+                              "token": "arr"
+                            },
+                            "index": {
+                              "type": "exp.var",
+                              "token": "i"
+                            }
+                          }
+                        ]
+                      },
+                      "code": {
+                        "type": "exp.block",
+                        "code": [
+                          {
+                            "type": "exp.invoke",
+                            "func": {
+                              "type": "exp.var",
+                              "token": "arrayPush"
+                            },
+                            "args": [
+                              {
+                                "type": "exp.var",
+                                "token": "narr"
+                              },
+                              {
+                                "type": "exp.array",
+                                "array": {
+                                  "type": "exp.var",
+                                  "token": "arr"
+                                },
+                                "index": {
+                                  "type": "exp.var",
+                                  "token": "i"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "else": null
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "exp.return",
+                "exp": {
+                  "type": "exp.var",
+                  "token": "narr"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "exp.binop",
+      "op": "=",
+      "lexp": {
+        "type": "exp.var",
+        "token": "disp"
+      },
+      "rexp": {
+        "type": "exp.const",
+        "value": {
+          "type": "type.function",
+          "args": [
+            "arr"
+          ],
+          "code": {
+            "type": "exp.block",
+            "code": [
+              {
+                "type": "exp.invoke",
+                "func": {
+                  "type": "exp.var",
+                  "token": "print"
+                },
+                "args": [
+                  {
+                    "type": "exp.binop",
+                    "op": "+",
+                    "lexp": {
+                      "type": "exp.const",
+                      "value": {
+                        "type": "type.string",
+                        "value": "Array: len: "
+                      }
+                    },
+                    "rexp": {
+                      "type": "exp.unop",
+                      "op": "$",
+                      "exp": {
+                        "type": "exp.unop",
+                        "op": "#",
+                        "exp": {
+                          "type": "exp.var",
+                          "token": "arr"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "exp.for",
+                "init": {
+                  "type": "exp.binop",
+                  "op": "=",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.const",
+                    "value": {
+                      "type": "type.number",
+                      "value": 0
+                    }
+                  }
+                },
+                "pred": {
+                  "type": "exp.binop",
+                  "op": "<",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.unop",
+                    "op": "#",
+                    "exp": {
+                      "type": "exp.var",
+                      "token": "arr"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "exp.binop",
+                  "op": "=",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.binop",
+                    "op": "+",
+                    "lexp": {
+                      "type": "exp.var",
+                      "token": "i"
+                    },
+                    "rexp": {
+                      "type": "exp.const",
+                      "value": {
+                        "type": "type.number",
+                        "value": 1
+                      }
+                    }
+                  }
+                },
+                "code": {
+                  "type": "exp.block",
+                  "code": [
+                    {
+                      "type": "exp.invoke",
+                      "func": {
+                        "type": "exp.var",
+                        "token": "print"
+                      },
+                      "args": [
+                        {
+                          "type": "exp.binop",
+                          "op": "+",
+                          "lexp": {
+                            "type": "exp.binop",
+                            "op": "+",
+                            "lexp": {
+                              "type": "exp.unop",
+                              "op": "$",
+                              "exp": {
+                                "type": "exp.var",
+                                "token": "i"
+                              }
+                            },
+                            "rexp": {
+                              "type": "exp.const",
+                              "value": {
+                                "type": "type.string",
+                                "value": " => "
+                              }
+                            }
+                          },
+                          "rexp": {
+                            "type": "exp.unop",
+                            "op": "$",
+                            "exp": {
+                              "type": "exp.array",
+                              "array": {
+                                "type": "exp.var",
+                                "token": "arr"
+                              },
+                              "index": {
+                                "type": "exp.var",
+                                "token": "i"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "exp.invoke",
+                "func": {
+                  "type": "exp.var",
+                  "token": "print"
+                },
+                "args": [
+                  {
+                    "type": "exp.const",
+                    "value": {
+                      "type": "type.string",
+                      "value": "Fin"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "exp.binop",
+      "op": "=",
+      "lexp": {
+        "type": "exp.var",
+        "token": "join"
+      },
+      "rexp": {
+        "type": "exp.const",
+        "value": {
+          "type": "type.function",
+          "args": [
+            "a1",
+            "a2"
+          ],
+          "code": {
+            "type": "exp.block",
+            "code": [
+              {
+                "type": "exp.binop",
+                "op": "=",
+                "lexp": {
+                  "type": "exp.var",
+                  "token": "narr"
+                },
+                "rexp": {
+                  "type": "exp.const",
+                  "value": {
+                    "type": "type.array",
+                    "value": []
+                  }
+                }
+              },
+              {
+                "type": "exp.for",
+                "init": {
+                  "type": "exp.binop",
+                  "op": "=",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.const",
+                    "value": {
+                      "type": "type.number",
+                      "value": 0
+                    }
+                  }
+                },
+                "pred": {
+                  "type": "exp.binop",
+                  "op": "<",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.unop",
+                    "op": "#",
+                    "exp": {
+                      "type": "exp.var",
+                      "token": "a1"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "exp.binop",
+                  "op": "=",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.binop",
+                    "op": "+",
+                    "lexp": {
+                      "type": "exp.var",
+                      "token": "i"
+                    },
+                    "rexp": {
+                      "type": "exp.const",
+                      "value": {
+                        "type": "type.number",
+                        "value": 1
+                      }
+                    }
+                  }
+                },
+                "code": {
+                  "type": "exp.block",
+                  "code": [
+                    {
+                      "type": "exp.invoke",
+                      "func": {
+                        "type": "exp.var",
+                        "token": "arrayPush"
+                      },
+                      "args": [
+                        {
+                          "type": "exp.var",
+                          "token": "narr"
+                        },
+                        {
+                          "type": "exp.array",
+                          "array": {
+                            "type": "exp.var",
+                            "token": "a1"
+                          },
+                          "index": {
+                            "type": "exp.var",
+                            "token": "i"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "exp.for",
+                "init": {
+                  "type": "exp.binop",
+                  "op": "=",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.const",
+                    "value": {
+                      "type": "type.number",
+                      "value": 0
+                    }
+                  }
+                },
+                "pred": {
+                  "type": "exp.binop",
+                  "op": "<",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.unop",
+                    "op": "#",
+                    "exp": {
+                      "type": "exp.var",
+                      "token": "a2"
+                    }
+                  }
+                },
+                "update": {
+                  "type": "exp.binop",
+                  "op": "=",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "i"
+                  },
+                  "rexp": {
+                    "type": "exp.binop",
+                    "op": "+",
+                    "lexp": {
+                      "type": "exp.var",
+                      "token": "i"
+                    },
+                    "rexp": {
+                      "type": "exp.const",
+                      "value": {
+                        "type": "type.number",
+                        "value": 1
+                      }
+                    }
+                  }
+                },
+                "code": {
+                  "type": "exp.block",
+                  "code": [
+                    {
+                      "type": "exp.invoke",
+                      "func": {
+                        "type": "exp.var",
+                        "token": "arrayPush"
+                      },
+                      "args": [
+                        {
+                          "type": "exp.var",
+                          "token": "narr"
+                        },
+                        {
+                          "type": "exp.array",
+                          "array": {
+                            "type": "exp.var",
+                            "token": "a2"
+                          },
+                          "index": {
+                            "type": "exp.var",
+                            "token": "i"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "exp.return",
+                "exp": {
+                  "type": "exp.var",
+                  "token": "narr"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "exp.binop",
+      "op": "=",
+      "lexp": {
+        "type": "exp.var",
+        "token": "sort"
+      },
+      "rexp": {
+        "type": "exp.const",
+        "value": {
+          "type": "type.function",
+          "args": [
+            "arr"
+          ],
+          "code": {
+            "type": "exp.block",
+            "code": [
+              {
+                "type": "exp.if",
+                "pred": {
+                  "type": "exp.binop",
+                  "op": "<=",
+                  "lexp": {
+                    "type": "exp.unop",
+                    "op": "#",
+                    "exp": {
+                      "type": "exp.var",
+                      "token": "arr"
+                    }
+                  },
+                  "rexp": {
+                    "type": "exp.const",
+                    "value": {
+                      "type": "type.number",
+                      "value": 2
+                    }
+                  }
+                },
+                "code": {
+                  "type": "exp.block",
+                  "code": [
+                    {
+                      "type": "exp.return",
+                      "exp": {
+                        "type": "exp.var",
+                        "token": "arr"
+                      }
+                    }
+                  ]
+                },
+                "else": null
+              },
+              {
+                "type": "exp.binop",
+                "op": "=",
+                "lexp": {
+                  "type": "exp.var",
+                  "token": "el"
+                },
+                "rexp": {
+                  "type": "exp.unop",
+                  "op": "@",
+                  "exp": {
+                    "type": "exp.var",
+                    "token": "arr"
+                  }
+                }
+              },
+              {
+                "type": "exp.binop",
+                "op": "=",
+                "lexp": {
+                  "type": "exp.var",
+                  "token": "gt"
+                },
+                "rexp": {
+                  "type": "exp.invoke",
+                  "func": {
+                    "type": "exp.var",
+                    "token": "filter"
+                  },
+                  "args": [
+                    {
+                      "type": "exp.var",
+                      "token": "arr"
+                    },
+                    {
+                      "type": "exp.const",
+                      "value": {
+                        "type": "type.function",
+                        "args": [
+                          "a"
+                        ],
+                        "code": {
+                          "type": "exp.block",
+                          "code": [
+                            {
+                              "type": "exp.return",
+                              "exp": {
+                                "type": "exp.binop",
+                                "op": "<=",
+                                "lexp": {
+                                  "type": "exp.var",
+                                  "token": "el"
+                                },
+                                "rexp": {
+                                  "type": "exp.var",
+                                  "token": "a"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "exp.binop",
+                "op": "=",
+                "lexp": {
+                  "type": "exp.var",
+                  "token": "lt"
+                },
+                "rexp": {
+                  "type": "exp.invoke",
+                  "func": {
+                    "type": "exp.var",
+                    "token": "filter"
+                  },
+                  "args": [
+                    {
+                      "type": "exp.var",
+                      "token": "arr"
+                    },
+                    {
+                      "type": "exp.const",
+                      "value": {
+                        "type": "type.function",
+                        "args": [
+                          "a"
+                        ],
+                        "code": {
+                          "type": "exp.block",
+                          "code": [
+                            {
+                              "type": "exp.return",
+                              "exp": {
+                                "type": "exp.binop",
+                                "op": "<",
+                                "lexp": {
+                                  "type": "exp.var",
+                                  "token": "a"
+                                },
+                                "rexp": {
+                                  "type": "exp.var",
+                                  "token": "el"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "exp.return",
+                "exp": {
+                  "type": "exp.invoke",
+                  "func": {
+                    "type": "exp.var",
+                    "token": "join"
+                  },
+                  "args": [
+                    {
+                      "type": "exp.invoke",
+                      "func": {
+                        "type": "exp.var",
+                        "token": "self"
+                      },
+                      "args": [
+                        {
+                          "type": "exp.var",
+                          "token": "lt"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "exp.invoke",
+                      "func": {
+                        "type": "exp.var",
+                        "token": "self"
+                      },
+                      "args": [
+                        {
+                          "type": "exp.var",
+                          "token": "gt"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "exp.binop",
+      "op": "=",
+      "lexp": {
+        "type": "exp.var",
+        "token": "fib"
+      },
+      "rexp": {
+        "type": "exp.const",
+        "value": {
+          "type": "type.function",
+          "args": [
+            "a"
+          ],
+          "code": {
+            "type": "exp.block",
+            "code": [
+              {
+                "type": "exp.if",
+                "pred": {
+                  "type": "exp.binop",
+                  "op": "<",
+                  "lexp": {
+                    "type": "exp.var",
+                    "token": "a"
+                  },
+                  "rexp": {
+                    "type": "exp.const",
+                    "value": {
+                      "type": "type.number",
+                      "value": 1
+                    }
+                  }
+                },
+                "code": {
+                  "type": "exp.block",
+                  "code": [
+                    {
+                      "type": "exp.return",
+                      "exp": {
+                        "type": "exp.const",
+                        "value": {
+                          "type": "type.number",
+                          "value": 1
+                        }
+                      }
+                    }
+                  ]
+                },
+                "else": null
+              },
+              {
+                "type": "exp.return",
+                "exp": {
+                  "type": "exp.binop",
+                  "op": "+",
+                  "lexp": {
+                    "type": "exp.invoke",
+                    "func": {
+                      "type": "exp.var",
+                      "token": "self"
+                    },
+                    "args": [
+                      {
+                        "type": "exp.binop",
+                        "op": "-",
+                        "lexp": {
+                          "type": "exp.var",
+                          "token": "a"
+                        },
+                        "rexp": {
+                          "type": "exp.const",
+                          "value": {
+                            "type": "type.number",
+                            "value": 1
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "rexp": {
+                    "type": "exp.invoke",
+                    "func": {
+                      "type": "exp.var",
+                      "token": "self"
+                    },
+                    "args": [
+                      {
+                        "type": "exp.binop",
+                        "op": "-",
+                        "lexp": {
+                          "type": "exp.var",
+                          "token": "a"
+                        },
+                        "rexp": {
+                          "type": "exp.const",
+                          "value": {
+                            "type": "type.number",
+                            "value": 2
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "exp.invoke",
+      "func": {
+        "type": "exp.var",
+        "token": "disp"
+      },
+      "args": [
+        {
+          "type": "exp.invoke",
+          "func": {
+            "type": "exp.var",
+            "token": "sort"
+          },
+          "args": [
+            {
+              "type": "exp.const",
+              "value": {
+                "type": "type.array",
+                "value": [
+                  {
+                    "type": "exp.invoke",
+                    "func": {
+                      "type": "exp.var",
+                      "token": "fib"
+                    },
+                    "args": [
+                      {
+                        "type": "exp.const",
+                        "value": {
+                          "type": "type.number",
+                          "value": 1
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "exp.invoke",
+                    "func": {
+                      "type": "exp.var",
+                      "token": "fib"
+                    },
+                    "args": [
+                      {
+                        "type": "exp.const",
+                        "value": {
+                          "type": "type.number",
+                          "value": 4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "exp.invoke",
+                    "func": {
+                      "type": "exp.var",
+                      "token": "fib"
+                    },
+                    "args": [
+                      {
+                        "type": "exp.const",
+                        "value": {
+                          "type": "type.number",
+                          "value": 3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "exp.invoke",
+                    "func": {
+                      "type": "exp.var",
+                      "token": "fib"
+                    },
+                    "args": [
+                      {
+                        "type": "exp.const",
+                        "value": {
+                          "type": "type.number",
+                          "value": 3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "exp.invoke",
+                    "func": {
+                      "type": "exp.var",
+                      "token": "fib"
+                    },
+                    "args": [
+                      {
+                        "type": "exp.const",
+                        "value": {
+                          "type": "type.number",
+                          "value": 2
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

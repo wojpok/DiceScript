@@ -1,0 +1,50 @@
+
+module.exports = {
+    metaData: {
+        version:    '1.0.0',
+        author:     'WP',
+        repo:       'TBA',
+    },
+    tokenConst: {
+        whites:     'token.whites',
+        number:     'token.number',
+        word:       'token.words',
+        operand:    'token.operand',
+        float:      'token.float',
+        special:    'token.special',
+        string:     'token.string',
+    },
+    typeConst: {
+        void:       'type.void',
+        null:       'type.null',
+        number:     'type.number',
+        string:     'type.string',
+        bool:       'type.bool',
+        array:      'type.array',
+        function:   'type.function',
+        builtin:    'type.builtin',
+    },
+    expConst: {
+        constExp:       'exp.const',
+        emptyExp:       'exp.empty',
+        varExp:         'exp.var',  
+        blockExp:       'exp.block',
+        unopExp:        'exp.unop',
+        binopExp:       'exp.binop',
+        ifExp:          'exp.if',
+        elseExp:        'exp.else',
+        forExp:         'exp.for',
+        whileExp:       'exp.while',
+        breakExp:       'exp.break',
+        returnExp:      'exp.return',
+        continueExp:    'exp.continue',
+        arrayApplyExp:  'exp.array',
+        funcInvokeExp:  'exp.invoke',
+    },
+    signalConst: {
+        returnSig:      'signal.return',
+        continueSig:    'signal.continue',
+        breakSig:       'signal.break',
+        errorSig:       'signal.error',
+    }
+}

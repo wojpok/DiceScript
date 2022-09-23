@@ -1,0 +1,178 @@
+
+const constants = require('./constants.js');
+const tokenizer = require('./tokenizer.js');
+const opconf    = require('./operators.js');
+
+function isClosingBracket(type, curr) {
+    return type === constants.tokenConst.special && curr === ')';
+}
+
+function isSemicolon(type, curr) {
+    return type === constants.tokenConst.special && curr === ';';
+}
+
+
+function parse(sourceCode) {
+    var tokens = tokenizer.tokenize(sourceCode);
+    var iterId = 0;
+
+    console.log(tokens);
+    
+    function loadNext() {
+        iterId++;
+        if(iterId >= tokens.length) {
+            throw "yeet";
+        }
+    }
+
+    function getCurrToken() {
+        return tokens[iterId][1];
+    }
+
+    function getTokenType() {
+        return tokens[iterId][0];
+    }
+
+    function isEnd() {
+        return tokens.length <= iterId;
+    }
+
+    function recursiveBlockParser(endPred = isSemicolon) {
+        var expr = [];
+        while(true) {
+            var tokenType = getTokenType();
+            var currToken = getCurrToken();
+
+            if(tokenType === constants.tokenConst.special && currToken === ';') {
+                return expr;
+            }
+        
+
+            expr.push(recursiveParse());
+
+            loadNext();
+
+            tokenType = getTokenType();
+            currToken = getCurrToken();
+            
+            if(tokenType === constants.tokenConst.special && currToken === ';') {
+                return rollOps( expr );
+            }
+            else if(tokenType === constants.tokenConst.operand) {
+                if(!(opconf.validBinops[currToken] ?? false)) {
+                    throw `Unknown binary operator ${currToken}`;
+                }
+                expr.push(currToken);
+            }
+
+            loadNext();
+        }
+    }
+
+    function recursiveParse() {
+        let tokenType, currToken
+
+        if(iterId >= tokens.length) {
+            return null;
+        }
+
+        [ tokenType, currToken ] = tokens[iterId];
+
+        switch(tokenType) {
+
+            case constants.tokenConst.number:
+            case constants.tokenConst.float:
+                return {
+                    type: constants.expConst.constExp,
+                    value: {
+                        type: constants.typeConst.number,
+                        value: +currToken,
+                    }
+                };
+            case constants.tokenConst.string:
+                return {
+                    type: constants.expConst.constExp,
+                    value: {
+                        type: constants.typeConst.string,
+                        value: currToken,
+                    }
+                };
+            case constants.tokenConst.operand: 
+                if(!(opconf.validUnops[currToken] ?? false)) {
+                    throw `Unknown unary operator ${currToken}`;
+                }
+
+                loadNext();
+                return {
+                    type: constants.expConst.unopExp,
+                    op: currToken,
+                    exp: recursiveParse(),
+                }
+            case constants.tokenConst.special:
+                if(currToken == '(') {
+                    return { }
+                }
+                if(currToken == '[') {
+                    
+                }
+                throw `Invalid special token ${currToken}`; 
+            case constants.tokenConst.word:
+                return {
+                    type: constants.expConst.varExp,
+                    token: currToken,
+                }
+        }
+    }
+
+    var exps = [];
+
+    while(!isEnd()) {
+        exps.push(recursiveBlockParser());
+        if(isEnd) {
+            return exps;
+        }
+        loadNext();
+    }
+    
+    return exps;
+}
+
+function rollOps(exps) {
+    for(let level = opconf.binopPriority.maxLevel; level >= 0; level--) {
+        if(exps.length === 1) {
+            return exps[0];
+        }
+
+        let i = 1;
+        let currLevel = opconf.binopPriority['p'+level];
+
+        rebuilded = [];
+
+        while(i < exps.length) {
+            let op = exps[i];
+
+            if(currLevel[op] ?? false) {
+                nexp = {
+                        type: constants.expConst.binopExp,
+                        op: op,
+                        lexp: exps[i - 1],
+                        rexp: exps[i + 1],
+                    };
+
+                exps.splice(i - 1, 2)
+
+                exps[i - 1] = nexp;
+            }
+            else {
+                i += 2;
+            }
+        }
+    }
+
+    return exps[0];
+}
+
+
+module.exports = {
+    parse: parse,
+}

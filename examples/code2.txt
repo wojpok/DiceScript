@@ -1,0 +1,65 @@
+
+
+filter = func(arr, pred) {
+    narr = [];
+
+    for(i = 0; i < #arr; i = i + 1) {
+        if(pred(arr[i])) {
+            arrayPush(narr, arr[i]);
+        }
+    }
+
+    return narr;
+};
+
+disp = func(arr) {
+    
+    print("Array: len: " + $ #arr);
+    for(i = 0; i < #arr; i = i + 1) {
+        print($i + " => " + $(arr[i]));
+    }
+    print("Fin");
+};
+
+join = func(a1, a2) {
+    narr = [];
+
+    for(i = 0; i < #a1; i = i + 1) {
+        arrayPush(narr, a1[i]);
+    }
+
+    for(i = 0; i < #a2; i = i + 1) {
+        arrayPush(narr, a2[i]);
+    }
+
+    return narr;
+};
+
+sort = func(arr) {
+
+    if(#arr <= 2) {
+        return arr;
+    }
+
+    el = @arr;
+
+    gt = (filter(arr, func(a) {
+        return el <= a;
+    }));
+
+    lt = (filter(arr, func(a) {
+        return a < el;
+    }));
+
+    return join(self(lt), self(gt));
+};
+
+
+fib = func(a) {
+    if(a < 1) {
+        return 1;
+    }
+    return self(a - 1) + self(a - 2);
+};
+
+disp(sort([fib(1), fib(4), fib(3), fib(3), fib(2), ]));
